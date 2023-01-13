@@ -30,4 +30,8 @@ body {
   .btn-secondary {
     @apply bg-transparent border border-primary text-primary p-2 rounded-md;
   }
+
+  .btn-ghost {
+    @apply bg-transparent border-none focus:border-none
+  }
 }
