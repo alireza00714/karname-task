@@ -1,5 +1,13 @@
+import Header from "../../components/Header";
+import QuestionListContainer from "./Questions";
+
 const QuestionListPage = () => {
-  return <div>QuestionListPage</div>;
+  return (
+    <>
+      <Header persianPageName="لیست سوالات" />
+      <QuestionListContainer />
+    </>
+  );
 };
 
 export default QuestionListPage;

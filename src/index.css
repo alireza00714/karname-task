@@ -1,3 +1,33 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: "Yekan";
+  src: url("./assets/fonts/Yekan.eot"); /* IE9 Compat Modes */
+  src: url("./assets/fonts/Yekan.eot?#iefix") format("embedded-opentype"),
+    /* IE6-IE8 */ url("./assets/fonts/Yekan.woff2") format("woff2"),
+    /* Modern Browsers */ url("./assets/fonts/Yekan.woff") format("woff"),
+    /* Modern Browsers */ url("./assets/fonts/Yekan.otf") format("opentype"),
+    /* Open Type Font */ url("./assets/fonts/Yekan.ttf") format("truetype"); /* Safari, Android, iOS */
+  font-weight: normal;
+  font-style: normal;
+  text-rendering: optimizeLegibility;
+  font-display: auto;
+}
+
+body {
+  direction: rtl;
+  font-family: "Yekan";
+  background-color: #f7f8f9;
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-primary rounded-md text-white hover:bg-green-700 h-9;
+  }
+
+  .btn-secondary {
+    @apply bg-transparent border border-primary text-primary p-2 rounded-md;
+  }
+}

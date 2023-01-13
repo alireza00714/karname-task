@@ -1,11 +1,13 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import MainLayout from "../layouts/MainLayout";
+import QuestionListPage from "../pages/question-list";
+import SingleQuestionPage from "../pages/single-question";
 
 const AppRoutes = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<MainLayout />}></Route>
+        <Route path="/" element={<QuestionListPage />} />
+        <Route path="/question/:id" element={<SingleQuestionPage />} />
       </Routes>
     </BrowserRouter>
   );
