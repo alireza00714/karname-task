@@ -1,5 +1,5 @@
 import { Dialog, Transition } from "@headlessui/react";
-import { Dispatch, FC, Fragment, SetStateAction, useRef } from "react";
+import { type Dispatch, type FC, Fragment, type SetStateAction } from "react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 
 interface Props {

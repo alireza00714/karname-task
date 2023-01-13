@@ -7,7 +7,7 @@ const AppRoutes = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<QuestionListPage />} />
-        <Route path="/question/:id" element={<SingleQuestionPage />} />
+        <Route path="/questions/:id" element={<SingleQuestionPage />} />
       </Routes>
     </BrowserRouter>
   );

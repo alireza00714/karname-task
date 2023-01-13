@@ -31,7 +31,11 @@ body {
     @apply bg-transparent border border-primary text-primary p-2 rounded-md;
   }
 
+  .btn-secondary-read {
+    @apply bg-transparent border border-[#199DA3] text-[#199DA3] p-2 rounded-md;
+  }
+
   .btn-ghost {
-    @apply bg-transparent border-none focus:border-none
+    @apply bg-transparent border-none focus:border-none;
   }
 }

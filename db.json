@@ -6,8 +6,8 @@
       "title": "مشکل در Auth در React",
       "question": "سلام من میخوام یه authentication ساده تو react بسازم اما این error رو بهم میده. نمیدونم مشکل از کجاست. عکس خروجی console رو هم گذاشتم که ببینید دقیقا چه مشکلی وجود داره",
       "details": "یه نکته هم اضافه کنم که من دارم از کتابخونه ی Auth0 استفاده میکنم.",
-      "isRead": false,
-      "creationTime": 1673528684000
+      "isRead": true,
+      "creationTime": 1673528614000
     }
   ],
   "answers": [
@@ -16,21 +16,21 @@
       "questionId": 0,
       "author": "علیرضا پیرمژدهی",
       "creationTime": 1673528689000,
-      "answer": "متغییر ENV رو تو فایلت تغییر بده درست میشه",
+      "answer": "اطلاعی ندارم",
       "reactions": {
-        "like": 20,
-        "dislisk": 32
+        "like": 18,
+        "dislike": 4
       }
     },
     {
       "id": 1,
+      "author": "مهدی پیرمژدهی",
       "questionId": 0,
-      "author": "علیرضا پیرمژدهی",
-      "creationTime": 1673528689000,
-      "answer": "متغییر ENV رو تو فایلت تغییر بده درست میشه",
+      "creationTime": 1673528658000,
+      "answer": "نمیدانم",
       "reactions": {
-        "like": 20,
-        "dislisk": 32
+        "like": 19,
+        "dislike": 2
       }
     }
   ]
