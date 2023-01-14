@@ -38,7 +38,7 @@ const AnswerBox: FC<Props> = (props) => {
   const queryClient = useQueryClient();
   const positiveVoteMutation = useMutation({
     mutationFn: () => voteForAnswer(id, like + 1, dislike),
-    onSuccess: (data) => {
+    onSuccess: () => {
       refetch();
     },
   });

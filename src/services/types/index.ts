@@ -4,6 +4,7 @@ export type SingleAnswerType = {
   author: string;
   creationTime: number;
   answer: string;
+  answersCount: number;
   reactions: {
     like: number;
     dislike: number;

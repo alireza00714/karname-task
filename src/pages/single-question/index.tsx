@@ -2,9 +2,9 @@ import { useQueries } from "@tanstack/react-query";
 import { useNavigate, useParams } from "react-router-dom";
 import Header from "../../components/Header";
 import { getAllAnswers, getSingleQuestion } from "../../services/api/functions";
-import AnswerConfirmation from "./AnswerConfirmation";
 import AnswersListContainer from "./Answers";
 import DetailedQuestionBox from "./DetailedQuestionBox";
+import SendingAnswerSection from "./SendingAnswerSection";
 
 const SingleQuestionPage = () => {
   const { id } = useParams();
@@ -45,7 +45,11 @@ const SingleQuestionPage = () => {
           refetch={answers!.refetch}
           questionId={question.data.id}
         />
-        <AnswerConfirmation />
+        <SendingAnswerSection
+          questionId={question.data.id}
+          answersCount={answers.data.length}
+          questionRefetch={question.refetch!}
+        />
       </main>
     </>
   );

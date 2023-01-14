@@ -8,6 +8,23 @@ export const getAllAnswers = async (questionId: string | number) => {
   return res.data;
 };
 
+export const createAnswer = async (data: SingleAnswerType) => {
+  const res = await customInstance.patch<SingleAnswerType>("/answers");
+  return res.data
+};
+
+export const voteForAnswer = async (
+  answerId: string | number,
+  like: number,
+  dislike: number
+) => {
+  const res = await customInstance.patch<SingleAnswerType>(
+    `/answers/${answerId}`,
+    { reactions: { like, dislike } }
+  );
+  return res.data;
+};
+
 export const getAllQuestions = async () => {
   const res = await customInstance.get<SingleQuestionType[]>("/questions");
   return res.data;
@@ -27,18 +44,6 @@ export const readSingleQuestion = async (
     {
       isRead,
     }
-  );
-  return res.data;
-};
-
-export const voteForAnswer = async (
-  answerId: string | number,
-  like: number,
-  dislike: number
-) => {
-  const res = await customInstance.patch<SingleAnswerType>(
-    `/answers/${answerId}`,
-    { reactions: { like, dislike } }
   );
   return res.data;
 };
