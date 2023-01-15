@@ -8,9 +8,9 @@ export const getAllAnswers = async (questionId: string | number) => {
   return res.data;
 };
 
-export const createAnswer = async (data: SingleAnswerType) => {
-  const res = await customInstance.patch<SingleAnswerType>("/answers");
-  return res.data
+export const createAnswer = async (answer: SingleAnswerType) => {
+  const res = await customInstance.post<SingleAnswerType>("/answers", answer);
+  return res.data;
 };
 
 export const voteForAnswer = async (
@@ -44,6 +44,14 @@ export const readSingleQuestion = async (
     {
       isRead,
     }
+  );
+  return res.data;
+};
+
+export const createQuestion = async (question: SingleQuestionType) => {
+  const res = await customInstance.post<SingleQuestionType>(
+    "/questions",
+    question
   );
   return res.data;
 };

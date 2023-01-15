@@ -1,6 +1,14 @@
 import { Dialog, Transition } from "@headlessui/react";
-import { type Dispatch, type FC, Fragment, type SetStateAction } from "react";
+import {
+  type Dispatch,
+  type FC,
+  type SetStateAction,
+  Fragment,
+  useState,
+} from "react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { createQuestion } from "../../services/api/functions";
 
 interface Props {
   setShowModal: Dispatch<SetStateAction<boolean>>;
@@ -9,6 +17,33 @@ interface Props {
 
 const ConfirmQuestionModal: FC<Props> = (props) => {
   const { showModal, setShowModal } = props;
+
+  const [subjectValue, setSubjectValue] = useState("");
+  const [questionValue, setQuestionValue] = useState("");
+
+  const queryClient = useQueryClient();
+
+  const mutation = useMutation({
+    mutationFn: () =>
+      createQuestion({
+        author: "صادق منصوری",
+        creationTime: Date.now(),
+        details: "",
+        id: Date.now(),
+        isRead: false,
+        question: questionValue,
+        title: subjectValue,
+        answersCount: 0,
+      }),
+    onSuccess: () => {
+      queryClient.refetchQueries({ queryKey: ["questions"] });
+      setShowModal(false);
+    },
+  });
+
+  const handleSubmitQuestion = () => {
+    mutation.mutate();
+  };
 
   return (
     <Transition.Root show={showModal} as={Fragment}>
@@ -53,6 +88,8 @@ const ConfirmQuestionModal: FC<Props> = (props) => {
                     <input
                       type="text"
                       className="w-full text-sm font-normal py-3 px-4 rounded-md border border-solid border-graylight focus:outline-none"
+                      value={subjectValue}
+                      onChange={(e) => setSubjectValue(e.target.value)}
                     />
                   </div>
                   <div className="flex flex-col items-start gap-2.5 px-6 mb-6">
@@ -60,6 +97,8 @@ const ConfirmQuestionModal: FC<Props> = (props) => {
                     <textarea
                       className="w-full text-sm font-normal py-3 px-4 rounded-md border border-solid border-graylight resize-none focus:outline-none"
                       rows={6}
+                      value={questionValue}
+                      onChange={(e) => setQuestionValue(e.target.value)}
                     />
                   </div>
                   <div className="flex justify-end px-6 gap-4 mb-6">
@@ -69,7 +108,10 @@ const ConfirmQuestionModal: FC<Props> = (props) => {
                     >
                       انصراف
                     </button>
-                    <button className="btn-primary px-5 text-xs">
+                    <button
+                      className="btn-primary px-5 text-xs"
+                      onClick={handleSubmitQuestion}
+                    >
                       ایجاد سوال
                     </button>
                   </div>

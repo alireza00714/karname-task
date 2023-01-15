@@ -42,12 +42,12 @@ const SingleQuestionPage = () => {
         />
         <AnswersListContainer
           answers={answers.data}
-          refetch={answers!.refetch}
+          refetch={answers.refetch!}
           questionId={question.data.id}
         />
         <SendingAnswerSection
           questionId={question.data.id}
-          answersCount={answers.data.length}
+          answersRefetch={answers.refetch!}
           questionRefetch={question.refetch!}
         />
       </main>

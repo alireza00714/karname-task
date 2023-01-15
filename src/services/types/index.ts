@@ -4,7 +4,6 @@ export type SingleAnswerType = {
   author: string;
   creationTime: number;
   answer: string;
-  answersCount: number;
   reactions: {
     like: number;
     dislike: number;
@@ -19,4 +18,5 @@ export type SingleQuestionType = {
   details: string;
   isRead: boolean;
   creationTime: number;
+  answersCount: number;
 };

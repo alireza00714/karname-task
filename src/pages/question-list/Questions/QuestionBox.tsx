@@ -9,16 +9,18 @@ interface Props {
   question: string;
   isRead: boolean;
   creationTime: number;
+  answersCount: number;
 }
 
 const QuestionBox: FC<Props> = (props) => {
-  const { id, creationTime, isRead, question, title } = props;
+  const { id, creationTime, isRead, question, title, answersCount } = props;
 
   const navigate = useNavigate();
-  
+
   const queryClient = useQueryClient();
   const mutation = useMutation({
     mutationFn: () => readSingleQuestion(id, true),
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ["questions"] }),
   });
 
   const dateTime = new Date(creationTime);
@@ -35,7 +37,6 @@ const QuestionBox: FC<Props> = (props) => {
   const handleNavigateToSingleQuestionPage = () => {
     if (!isRead) {
       mutation.mutate();
-      queryClient.invalidateQueries({ queryKey: ["questions"] });
     }
 
     navigate(`/questions/${id}`);
@@ -62,7 +63,7 @@ const QuestionBox: FC<Props> = (props) => {
           </span>
           <span className="flex items-center gap-1.5">
             <img src="/assets/icons/Comment.svg" alt="" />
-            <span className="text-graydark">20</span>
+            <span className="text-graydark">{answersCount}</span>
           </span>
         </span>
       </div>

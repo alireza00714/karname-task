@@ -3,23 +3,31 @@ import {
   type RefetchOptions,
   type RefetchQueryFilters,
   useMutation,
+  useQueryClient,
 } from "@tanstack/react-query";
 import { type FC, useState } from "react";
 import { createAnswer } from "../../../services/api/functions";
-import type { SingleQuestionType } from "../../../services/types";
+import type {
+  SingleAnswerType,
+  SingleQuestionType,
+} from "../../../services/types";
 
 interface Props {
   questionId: string | number;
-  answersCount: number;
+  answersRefetch: <TPageData>(
+    options?: (RefetchOptions & RefetchQueryFilters<TPageData>) | undefined
+  ) => Promise<QueryObserverResult<SingleAnswerType[], unknown>>;
   questionRefetch: <TPageData>(
     options?: (RefetchOptions & RefetchQueryFilters<TPageData>) | undefined
   ) => Promise<QueryObserverResult<SingleQuestionType, unknown>>;
 }
 
 const SendingAnswerSection: FC<Props> = (props) => {
-  const { questionId, answersCount } = props;
+  const { questionId, questionRefetch, answersRefetch } = props;
 
   const [answerValue, setAnswerValue] = useState("");
+
+  const queryClient = useQueryClient();
 
   const mutation = useMutation({
     mutationFn: () =>
@@ -30,9 +38,17 @@ const SendingAnswerSection: FC<Props> = (props) => {
         creationTime: Date.now(),
         questionId: questionId,
         reactions: { like: 0, dislike: 0 },
-        answersCount: answersCount + 1,
       }),
+    onSuccess: () => {
+      questionRefetch();
+      answersRefetch();
+      setAnswerValue("");
+    },
   });
+
+  const handleSubmitAnswer = () => {
+    mutation.mutate();
+  };
 
   return (
     <div className="flex flex-col gap-[1.125rem]">
@@ -54,7 +70,9 @@ const SendingAnswerSection: FC<Props> = (props) => {
             محل قرارگیری متن خطا
           </p>
         </div>
-        <button className="btn-primary mt-4 w-48">ارسال پاسخ</button>
+        <button className="btn-primary mt-4 w-48" onClick={handleSubmitAnswer}>
+          ارسال پاسخ
+        </button>
       </div>
     </div>
   );
